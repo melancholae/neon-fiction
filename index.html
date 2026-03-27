@@ -1,593 +1,585 @@
-export default function NeonFictionLinkPage() {
-  const links = {
-    spotify:
-      "https://open.spotify.com/track/5pOK8YXBRgyfiscG6xvRlq?si=9d03da15b9634817",
-    appleMusic:
-      "https://music.apple.com/us/song/neon-fiction/1887698158",
-    youtubeMusic:
-      "https://youtu.be/PPYNzYk24vo?si=syTjFYCo7cOJZBGb",
-    coverArt:
-      "https://res.cloudinary.com/dmo7ncvk0/image/upload/f_auto,q_auto,w_1200/v1774607712/neonfictionRevQLTY_3_miso96.webp",
-  };
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Fiction</title>
+    <meta name="description" content="Neon Fiction by Melancholae & Youkie Silva" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-  const platformButtons = [
-    { label: "Spotify", href: links.spotify },
-    { label: "Apple Music", href: links.appleMusic },
-    { label: "YouTube Music", href: links.youtubeMusic },
-  ];
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #000;
+        color: #fff;
+      }
 
-  return (
-    <>
-      <style>{`
-        * {
-          box-sizing: border-box;
-        }
+      body {
+        position: relative;
+        overflow-x: hidden;
+      }
 
-        html,
-        body,
-        #root {
-          margin: 0;
-          min-height: 100%;
-          font-family: Arial, Helvetica, sans-serif;
-          background: #000;
-          color: #fff;
-        }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
 
-        body {
-          position: relative;
-          overflow-x: hidden;
-        }
+      .page {
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 10%, rgba(34, 211, 238, 0.22), transparent 25%),
+          radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.18), transparent 22%),
+          radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.16), transparent 20%),
+          radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.12), transparent 26%),
+          linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.78)),
+          #000;
+      }
 
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+      .grid-overlay {
+        position: absolute;
+        inset: 0;
+        opacity: 0.16;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+        background-size: 44px 44px;
+        pointer-events: none;
+      }
 
-        .page {
-          position: relative;
-          min-height: 100vh;
-          overflow: hidden;
-          background:
-            radial-gradient(circle at 50% 10%, rgba(34, 211, 238, 0.22), transparent 25%),
-            radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.18), transparent 22%),
-            radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.16), transparent 20%),
-            radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.12), transparent 26%),
-            linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.78)),
-            #000;
-        }
+      .glow {
+        position: absolute;
+        border-radius: 999px;
+        filter: blur(72px);
+        pointer-events: none;
+      }
 
-        .grid-overlay {
-          position: absolute;
-          inset: 0;
-          opacity: 0.16;
-          background-image:
-            linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-          background-size: 44px 44px;
-          pointer-events: none;
-        }
+      .glow-left {
+        left: -8rem;
+        top: 6rem;
+        width: 18rem;
+        height: 18rem;
+        background: rgba(34, 211, 238, 0.2);
+      }
 
-        .glow {
-          position: absolute;
-          border-radius: 999px;
-          filter: blur(72px);
-          pointer-events: none;
-        }
+      .glow-right {
+        right: -6rem;
+        top: 8rem;
+        width: 18rem;
+        height: 18rem;
+        background: rgba(217, 70, 239, 0.2);
+      }
 
-        .glow-left {
-          left: -8rem;
-          top: 6rem;
-          width: 18rem;
-          height: 18rem;
-          background: rgba(34, 211, 238, 0.2);
-        }
+      .glow-bottom {
+        left: 50%;
+        bottom: -8rem;
+        transform: translateX(-50%);
+        width: 20rem;
+        height: 20rem;
+        background: rgba(59, 130, 246, 0.2);
+      }
 
-        .glow-right {
-          right: -6rem;
-          top: 8rem;
-          width: 18rem;
-          height: 18rem;
-          background: rgba(217, 70, 239, 0.2);
-        }
+      .shape {
+        position: absolute;
+        pointer-events: none;
+      }
 
-        .glow-bottom {
-          left: 50%;
-          bottom: -8rem;
-          transform: translateX(-50%);
-          width: 20rem;
-          height: 20rem;
-          background: rgba(59, 130, 246, 0.2);
-        }
+      .shape-one {
+        left: 8%;
+        top: 18%;
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid rgba(103, 232, 249, 0.2);
+        border-radius: 999px;
+      }
 
-        .shape {
-          position: absolute;
-          pointer-events: none;
-        }
+      .shape-two {
+        right: 10%;
+        top: 24%;
+        width: 4rem;
+        height: 4rem;
+        border: 1px solid rgba(232, 121, 249, 0.2);
+        border-radius: 999px;
+      }
 
-        .shape-one {
-          left: 8%;
-          top: 18%;
-          width: 6rem;
-          height: 6rem;
-          border: 1px solid rgba(103, 232, 249, 0.2);
-          border-radius: 999px;
-        }
+      .shape-three {
+        left: 14%;
+        bottom: 18%;
+        width: 5rem;
+        height: 5rem;
+        border: 1px solid rgba(103, 232, 249, 0.15);
+        transform: rotate(45deg);
+      }
 
-        .shape-two {
-          right: 10%;
-          top: 24%;
-          width: 4rem;
-          height: 4rem;
-          border: 1px solid rgba(232, 121, 249, 0.2);
-          border-radius: 999px;
-        }
+      .shape-four {
+        right: 15%;
+        bottom: 20%;
+        width: 7rem;
+        height: 7rem;
+        border: 1px solid rgba(147, 197, 253, 0.1);
+        border-radius: 999px;
+      }
 
-        .shape-three {
-          left: 14%;
-          bottom: 18%;
-          width: 5rem;
-          height: 5rem;
-          border: 1px solid rgba(103, 232, 249, 0.15);
-          transform: rotate(45deg);
-        }
+      .main {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+      }
 
-        .shape-four {
-          right: 15%;
-          bottom: 20%;
-          width: 7rem;
-          height: 7rem;
-          border: 1px solid rgba(147, 197, 253, 0.1);
-          border-radius: 999px;
-        }
+      .layout {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 2.5rem;
+        width: 100%;
+        align-items: center;
+      }
 
+      .left {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        width: fit-content;
+        padding: 0.7rem 1rem;
+        border-radius: 999px;
+        border: 1px solid rgba(103, 232, 249, 0.2);
+        background: rgba(34, 211, 238, 0.1);
+        color: #cffafe;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
+      }
+
+      .badge-dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 999px;
+        background: #67e8f9;
+        box-shadow: 0 0 12px rgba(34, 211, 238, 1);
+      }
+
+      .hero-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+
+      .title {
+        margin: 0;
+        font-size: clamp(4rem, 10vw, 8rem);
+        line-height: 0.9;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.04em;
+      }
+
+      .title-neon {
+        display: block;
+        color: #67e8f9;
+        text-shadow: 0 0 22px rgba(34, 211, 238, 0.95);
+      }
+
+      .title-fiction {
+        display: block;
+        color: white;
+        text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+      }
+
+      .line {
+        width: 10rem;
+        height: 1px;
+        background: linear-gradient(to right, rgba(103, 232, 249, 0.9), rgba(232, 121, 249, 0.5), transparent);
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.6);
+      }
+
+      .artist {
+        margin: 0;
+        max-width: 42rem;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        text-transform: uppercase;
+        letter-spacing: 0.32em;
+        color: #a1a1aa;
+      }
+
+      .buttons {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+        max-width: 42rem;
+      }
+
+      .button {
+        position: relative;
+        overflow: hidden;
+        border-radius: 1.4rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.2rem 1.25rem;
+        backdrop-filter: blur(18px);
+        transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        background: linear-gradient(to bottom right, rgba(103, 232, 249, 0.1), transparent, rgba(232, 121, 249, 0.1));
+      }
+
+      .button::after {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        top: 0;
+        height: 1px;
+        opacity: 0.6;
+        background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.8), transparent);
+      }
+
+      .button:hover {
+        transform: translateY(-6px);
+        border-color: rgba(103, 232, 249, 0.5);
+        box-shadow: 0 0 28px rgba(34, 211, 238, 0.22);
+      }
+
+      .button:hover::before {
+        opacity: 1;
+      }
+
+      .button-inner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        font-size: 1rem;
+        font-weight: 700;
+      }
+
+      .arrow {
+        color: #a5f3fc;
+        transition: transform 0.3s ease;
+      }
+
+      .button:hover .arrow {
+        transform: translateX(4px);
+      }
+
+      .right {
+        position: relative;
+      }
+
+      .art-glow {
+        position: absolute;
+        inset: -1.5rem;
+        border-radius: 2.5rem;
+        background: linear-gradient(to bottom right, rgba(34, 211, 238, 0.2), rgba(217, 70, 239, 0.1), rgba(59, 130, 246, 0.2));
+        filter: blur(32px);
+      }
+
+      .art-shell {
+        position: relative;
+        border-radius: 2.4rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1rem;
+        backdrop-filter: blur(24px);
+        box-shadow: 0 0 50px rgba(34, 211, 238, 0.08);
+      }
+
+      .art-inner {
+        border-radius: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.25rem;
+        background: linear-gradient(to bottom right, #020617, #000000, #0f172a);
+      }
+
+      .art-frame {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        border-radius: 1.7rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background:
+          radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.28), transparent 20%),
+          radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.22), transparent 24%),
+          linear-gradient(135deg, #020617, #0b1120 35%, #09090b 65%, #020617);
+      }
+
+      .art-grid {
+        position: absolute;
+        inset: 0;
+        opacity: 0.18;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+        background-size: 26px 26px;
+        pointer-events: none;
+      }
+
+      .art-decoration {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .art-circle-one {
+        left: 2rem;
+        top: 2.5rem;
+        width: 6rem;
+        height: 6rem;
+        border: 1px solid rgba(103, 232, 249, 0.3);
+        border-radius: 999px;
+        box-shadow: 0 0 18px rgba(34, 211, 238, 0.3);
+      }
+
+      .art-shape-two {
+        right: 2.5rem;
+        top: 3rem;
+        width: 4rem;
+        height: 4rem;
+        border: 1px solid rgba(232, 121, 249, 0.3);
+        transform: rotate(45deg);
+      }
+
+      .art-circle-three {
+        left: 2.5rem;
+        bottom: 4rem;
+        width: 5rem;
+        height: 5rem;
+        border: 1px solid rgba(147, 197, 253, 0.2);
+        border-radius: 999px;
+      }
+
+      .art-glow-four {
+        right: 2.5rem;
+        bottom: 2.5rem;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 999px;
+        background: rgba(217, 70, 239, 0.1);
+        filter: blur(24px);
+      }
+
+      .art-line-one {
+        left: 50%;
+        top: 22%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 11rem;
+        background: linear-gradient(to bottom, transparent, rgba(103, 232, 249, 0.8), transparent);
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+      }
+
+      .art-line-two {
+        left: 28%;
+        top: 30%;
+        width: 7rem;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.7), transparent);
+        box-shadow: 0 0 16px rgba(34, 211, 238, 0.7);
+      }
+
+      .art-line-three {
+        right: 20%;
+        bottom: 30%;
+        width: 6rem;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(232, 121, 249, 0.7), transparent);
+        box-shadow: 0 0 16px rgba(217, 70, 239, 0.6);
+      }
+
+      .cover-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 1.4rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(10px);
+      }
+
+      .cover-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      @media (max-width: 980px) {
         .main {
-          position: relative;
-          z-index: 1;
-          min-height: 100vh;
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 2.5rem 1.5rem;
-          display: flex;
-          align-items: center;
+          padding: 2rem 1.25rem;
         }
 
         .layout {
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 2.5rem;
-          width: 100%;
-          align-items: center;
-        }
-
-        .left {
-          display: flex;
-          flex-direction: column;
+          grid-template-columns: 1fr;
           gap: 2rem;
         }
 
+        .right {
+          max-width: 32rem;
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .page {
+          background:
+            radial-gradient(circle at 50% 8%, rgba(34, 211, 238, 0.22), transparent 24%),
+            radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.16), transparent 20%),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.82)),
+            #000;
+        }
+
+        .main {
+          padding: 1.5rem 1rem 2rem;
+        }
+
+        .left {
+          gap: 1.5rem;
+        }
+
         .badge {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.75rem;
-          width: fit-content;
-          padding: 0.7rem 1rem;
-          border-radius: 999px;
-          border: 1px solid rgba(103, 232, 249, 0.2);
-          background: rgba(34, 211, 238, 0.1);
-          color: #cffafe;
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.35em;
-          box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
-        }
-
-        .badge-dot {
-          width: 0.5rem;
-          height: 0.5rem;
-          border-radius: 999px;
-          background: #67e8f9;
-          box-shadow: 0 0 12px rgba(34, 211, 238, 1);
-        }
-
-        .hero-copy {
-          display: flex;
-          flex-direction: column;
-          gap: 1.25rem;
-        }
-
-        .title {
-          margin: 0;
-          font-size: clamp(4rem, 10vw, 8rem);
-          line-height: 0.9;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: -0.04em;
-        }
-
-        .title-neon {
-          display: block;
-          color: #67e8f9;
-          text-shadow: 0 0 22px rgba(34, 211, 238, 0.95);
-        }
-
-        .title-fiction {
-          display: block;
-          color: white;
-          text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
-        }
-
-        .line {
-          width: 10rem;
-          height: 1px;
-          background: linear-gradient(to right, rgba(103, 232, 249, 0.9), rgba(232, 121, 249, 0.5), transparent);
-          box-shadow: 0 0 18px rgba(34, 211, 238, 0.6);
+          font-size: 0.68rem;
+          letter-spacing: 0.28em;
+          padding: 0.65rem 0.9rem;
         }
 
         .artist {
-          margin: 0;
-          max-width: 42rem;
-          font-size: clamp(0.85rem, 2vw, 1rem);
-          text-transform: uppercase;
-          letter-spacing: 0.32em;
-          color: #a1a1aa;
+          letter-spacing: 0.22em;
+          line-height: 1.6;
         }
 
         .buttons {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 1rem;
-          max-width: 42rem;
+          grid-template-columns: 1fr;
+          max-width: none;
         }
 
         .button {
-          position: relative;
-          overflow: hidden;
-          border-radius: 1.4rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.05);
-          padding: 1.2rem 1.25rem;
-          backdrop-filter: blur(18px);
-          transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-        }
-
-        .button::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          opacity: 0;
-          transition: opacity 0.3s ease;
-          background: linear-gradient(to bottom right, rgba(103, 232, 249, 0.1), transparent, rgba(232, 121, 249, 0.1));
-        }
-
-        .button::after {
-          content: "";
-          position: absolute;
-          left: 1.5rem;
-          right: 1.5rem;
-          top: 0;
-          height: 1px;
-          opacity: 0.6;
-          background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.8), transparent);
-        }
-
-        .button:hover {
-          transform: translateY(-6px);
-          border-color: rgba(103, 232, 249, 0.5);
-          box-shadow: 0 0 28px rgba(34, 211, 238, 0.22);
-        }
-
-        .button:hover::before {
-          opacity: 1;
+          padding: 1rem 1.1rem;
         }
 
         .button-inner {
-          position: relative;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.75rem;
-          font-size: 1rem;
-          font-weight: 700;
-        }
-
-        .arrow {
-          color: #a5f3fc;
-          transition: transform 0.3s ease;
-        }
-
-        .button:hover .arrow {
-          transform: translateX(4px);
-        }
-
-        .right {
-          position: relative;
-        }
-
-        .art-glow {
-          position: absolute;
-          inset: -1.5rem;
-          border-radius: 2.5rem;
-          background: linear-gradient(to bottom right, rgba(34, 211, 238, 0.2), rgba(217, 70, 239, 0.1), rgba(59, 130, 246, 0.2));
-          filter: blur(32px);
+          font-size: 0.98rem;
         }
 
         .art-shell {
-          position: relative;
-          border-radius: 2.4rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.05);
-          padding: 1rem;
-          backdrop-filter: blur(24px);
-          box-shadow: 0 0 50px rgba(34, 211, 238, 0.08);
+          padding: 0.8rem;
+          border-radius: 2rem;
         }
 
         .art-inner {
-          border-radius: 2rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 1.25rem;
-          background: linear-gradient(to bottom right, #020617, #000000, #0f172a);
+          padding: 0.95rem;
+          border-radius: 1.6rem;
         }
 
         .art-frame {
-          position: relative;
-          aspect-ratio: 1 / 1;
-          overflow: hidden;
-          border-radius: 1.7rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background:
-            radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.28), transparent 20%),
-            radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.22), transparent 24%),
-            linear-gradient(135deg, #020617, #0b1120 35%, #09090b 65%, #020617);
+          border-radius: 1.2rem;
         }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="grid-overlay"></div>
 
-        .art-grid {
-          position: absolute;
-          inset: 0;
-          opacity: 0.18;
-          background-image:
-            linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-          background-size: 26px 26px;
-          pointer-events: none;
-        }
+      <div class="glow glow-left"></div>
+      <div class="glow glow-right"></div>
+      <div class="glow glow-bottom"></div>
 
-        .art-decoration {
-          position: absolute;
-          pointer-events: none;
-        }
+      <div class="shape shape-one"></div>
+      <div class="shape shape-two"></div>
+      <div class="shape shape-three"></div>
+      <div class="shape shape-four"></div>
 
-        .art-circle-one {
-          left: 2rem;
-          top: 2.5rem;
-          width: 6rem;
-          height: 6rem;
-          border: 1px solid rgba(103, 232, 249, 0.3);
-          border-radius: 999px;
-          box-shadow: 0 0 18px rgba(34, 211, 238, 0.3);
-        }
+      <main class="main">
+        <div class="layout">
+          <section class="left">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              <span>Out Now</span>
+            </div>
 
-        .art-shape-two {
-          right: 2.5rem;
-          top: 3rem;
-          width: 4rem;
-          height: 4rem;
-          border: 1px solid rgba(232, 121, 249, 0.3);
-          transform: rotate(45deg);
-        }
+            <div class="hero-copy">
+              <h1 class="title">
+                <span class="title-neon">Neon</span>
+                <span class="title-fiction">Fiction</span>
+              </h1>
 
-        .art-circle-three {
-          left: 2.5rem;
-          bottom: 4rem;
-          width: 5rem;
-          height: 5rem;
-          border: 1px solid rgba(147, 197, 253, 0.2);
-          border-radius: 999px;
-        }
+              <div class="line"></div>
 
-        .art-glow-four {
-          right: 2.5rem;
-          bottom: 2.5rem;
-          width: 7rem;
-          height: 7rem;
-          border-radius: 999px;
-          background: rgba(217, 70, 239, 0.1);
-          filter: blur(24px);
-        }
+              <p class="artist">by Melancholae &amp; Youkie Silva</p>
+            </div>
 
-        .art-line-one {
-          left: 50%;
-          top: 22%;
-          transform: translateX(-50%);
-          width: 2px;
-          height: 11rem;
-          background: linear-gradient(to bottom, transparent, rgba(103, 232, 249, 0.8), transparent);
-          box-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
-        }
+            <div class="buttons">
+              <a class="button" href="https://open.spotify.com/album/24JKKErbBSIxGEA5EqVozx?si=qEBb8C8ETgmT_zsT-Xz78Q" target="_blank" rel="noreferrer">
+                <div class="button-inner">
+                  <span>Spotify</span>
+                  <span class="arrow">→</span>
+                </div>
+              </a>
 
-        .art-line-two {
-          left: 28%;
-          top: 30%;
-          width: 7rem;
-          height: 2px;
-          background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.7), transparent);
-          box-shadow: 0 0 16px rgba(34, 211, 238, 0.7);
-        }
+              <a class="button" href="https://music.apple.com/us/song/neon-fiction/1887698158" target="_blank" rel="noreferrer">
+                <div class="button-inner">
+                  <span>Apple Music</span>
+                  <span class="arrow">→</span>
+                </div>
+              </a>
 
-        .art-line-three {
-          right: 20%;
-          bottom: 30%;
-          width: 6rem;
-          height: 2px;
-          background: linear-gradient(to right, transparent, rgba(232, 121, 249, 0.7), transparent);
-          box-shadow: 0 0 16px rgba(217, 70, 239, 0.6);
-        }
+              <a class="button" href="https://music.youtube.com/playlist?list=OLAK5uy_mmtZvLM1OSXLSbkpM0fMZB2jjKuGOqRio&si=pJ7H-0QaeTSwYAmb" target="_blank" rel="noreferrer">
+                <div class="button-inner">
+                  <span>YouTube Music</span>
+                  <span class="arrow">→</span>
+                </div>
+              </a>
+            </div>
+          </section>
 
-        .cover-wrap {
-          position: relative;
-          width: 100%;
-          height: 100%;
-          overflow: hidden;
-          border-radius: 1.4rem;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(0, 0, 0, 0.1);
-          backdrop-filter: blur(10px);
-        }
+          <section class="right">
+            <div class="art-glow"></div>
 
-        .cover-wrap img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
+            <div class="art-shell">
+              <div class="art-inner">
+                <div class="art-frame">
+                  <div class="art-grid"></div>
+                  <div class="art-decoration art-circle-one"></div>
+                  <div class="art-decoration art-shape-two"></div>
+                  <div class="art-decoration art-circle-three"></div>
+                  <div class="art-decoration art-glow-four"></div>
+                  <div class="art-decoration art-line-one"></div>
+                  <div class="art-decoration art-line-two"></div>
+                  <div class="art-decoration art-line-three"></div>
 
-        @media (max-width: 980px) {
-          .main {
-            padding: 2rem 1.25rem;
-          }
-
-          .layout {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-
-          .right {
-            max-width: 32rem;
-            width: 100%;
-            margin: 0 auto;
-          }
-        }
-
-        @media (max-width: 700px) {
-          .page {
-            background:
-              radial-gradient(circle at 50% 8%, rgba(34, 211, 238, 0.22), transparent 24%),
-              radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.16), transparent 20%),
-              linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.82)),
-              #000;
-          }
-
-          .main {
-            padding: 1.5rem 1rem 2rem;
-          }
-
-          .left {
-            gap: 1.5rem;
-          }
-
-          .badge {
-            font-size: 0.68rem;
-            letter-spacing: 0.28em;
-            padding: 0.65rem 0.9rem;
-          }
-
-          .artist {
-            letter-spacing: 0.22em;
-            line-height: 1.6;
-          }
-
-          .buttons {
-            grid-template-columns: 1fr;
-            max-width: none;
-          }
-
-          .button {
-            padding: 1rem 1.1rem;
-          }
-
-          .button-inner {
-            font-size: 0.98rem;
-          }
-
-          .art-shell {
-            padding: 0.8rem;
-            border-radius: 2rem;
-          }
-
-          .art-inner {
-            padding: 0.95rem;
-            border-radius: 1.6rem;
-          }
-
-          .art-frame {
-            border-radius: 1.2rem;
-          }
-        }
-      `}</style>
-
-      <div className="page">
-        <div className="grid-overlay" />
-
-        <div className="glow glow-left" />
-        <div className="glow glow-right" />
-        <div className="glow glow-bottom" />
-
-        <div className="shape shape-one" />
-        <div className="shape shape-two" />
-        <div className="shape shape-three" />
-        <div className="shape shape-four" />
-
-        <main className="main">
-          <div className="layout">
-            <section className="left">
-              <div className="badge">
-                <span className="badge-dot" />
-                <span>Out Now</span>
-              </div>
-
-              <div className="hero-copy">
-                <h1 className="title">
-                  <span className="title-neon">Neon</span>
-                  <span className="title-fiction">Fiction</span>
-                </h1>
-
-                <div className="line" />
-
-                <p className="artist">by Melancholae &amp; Youkie Silva</p>
-              </div>
-
-              <div className="buttons">
-                {platformButtons.map((item) => (
-                  <a
-                    key={item.label}
-                    className="button"
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <div className="button-inner">
-                      <span>{item.label}</span>
-                      <span className="arrow">→</span>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </section>
-
-            <section className="right">
-              <div className="art-glow" />
-
-              <div className="art-shell">
-                <div className="art-inner">
-                  <div className="art-frame">
-                    <div className="art-grid" />
-                    <div className="art-decoration art-circle-one" />
-                    <div className="art-decoration art-shape-two" />
-                    <div className="art-decoration art-circle-three" />
-                    <div className="art-decoration art-glow-four" />
-                    <div className="art-decoration art-line-one" />
-                    <div className="art-decoration art-line-two" />
-                    <div className="art-decoration art-line-three" />
-
-                    <div className="cover-wrap">
-                      <img src={links.coverArt} alt="Neon Fiction cover art" />
-                    </div>
+                  <div class="cover-wrap">
+                    <img src="https://res.cloudinary.com/dmo7ncvk0/image/upload/f_auto,q_auto,w_1200/v1774607712/neonfictionRevQLTY_3_miso96.webp" alt="Neon Fiction cover art" />
                   </div>
                 </div>
               </div>
-            </section>
-          </div>
-        </main>
-      </div>
-    </>
-  );
-}
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

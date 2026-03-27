@@ -1,8 +1,13 @@
 export default function NeonFictionLinkPage() {
   const links = {
-    spotify: "https://open.spotify.com/track/5pOK8YXBRgyfiscG6xvRlq?si=9d03da15b9634817",
-    appleMusic: "https://music.apple.com/us/song/neon-fiction/1887698158",
-    youtubeMusic: "https://youtu.be/PPYNzYk24vo?si=syTjFYCo7cOJZBGb",
+    spotify:
+      "https://open.spotify.com/track/5pOK8YXBRgyfiscG6xvRlq?si=9d03da15b9634817",
+    appleMusic:
+      "https://music.apple.com/us/song/neon-fiction/1887698158",
+    youtubeMusic:
+      "https://youtu.be/PPYNzYk24vo?si=syTjFYCo7cOJZBGb",
+    coverArt:
+      "https://res.cloudinary.com/dmo7ncvk0/image/upload/f_auto,q_auto,w_1200/v1774607712/neonfictionRevQLTY_3_miso96.webp",
   };
 
   const platformButtons = [
@@ -12,95 +17,577 @@ export default function NeonFictionLinkPage() {
   ];
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black text-white">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_10%,rgba(34,211,238,0.22),transparent_25%),radial-gradient(circle_at_15%_20%,rgba(168,85,247,0.18),transparent_22%),radial-gradient(circle_at_85%_25%,rgba(59,130,246,0.16),transparent_20%),radial-gradient(circle_at_50%_100%,rgba(236,72,153,0.12),transparent_26%)]" />
-      <div className="absolute inset-0 opacity-[0.16] [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:44px_44px]" />
-      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.2),rgba(0,0,0,0.78))]" />
+    <>
+      <style>{`
+        * {
+          box-sizing: border-box;
+        }
 
-      <div className="absolute left-[-8rem] top-24 h-72 w-72 rounded-full bg-cyan-400/20 blur-3xl" />
-      <div className="absolute right-[-6rem] top-32 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl" />
-      <div className="absolute bottom-[-8rem] left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-blue-500/20 blur-3xl" />
+        html,
+        body,
+        #root {
+          margin: 0;
+          min-height: 100%;
+          font-family: Arial, Helvetica, sans-serif;
+          background: #000;
+          color: #fff;
+        }
 
-      <div className="absolute left-[8%] top-[18%] h-24 w-24 rounded-full border border-cyan-300/20" />
-      <div className="absolute right-[10%] top-[24%] h-16 w-16 rounded-full border border-fuchsia-400/20" />
-      <div className="absolute bottom-[18%] left-[14%] h-20 w-20 rotate-45 border border-cyan-300/15" />
-      <div className="absolute bottom-[20%] right-[15%] h-28 w-28 rounded-full border border-blue-300/10" />
+        body {
+          position: relative;
+          overflow-x: hidden;
+        }
 
-      <main className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-6 py-10 md:px-10">
-        <div className="grid w-full items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <section className="space-y-8">
-            <div className="inline-flex items-center gap-3 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.12)]">
-              <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,1)]" />
-              Out Now
-            </div>
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
 
-            <div className="space-y-5">
-              <h1 className="text-6xl font-black uppercase leading-[0.9] tracking-tight sm:text-7xl md:text-8xl xl:text-[8rem]">
-                <span className="block text-cyan-300 drop-shadow-[0_0_22px_rgba(34,211,238,0.95)]">
-                  Neon
-                </span>
-                <span className="block text-white drop-shadow-[0_0_18px_rgba(255,255,255,0.12)]">
-                  Fiction
-                </span>
-              </h1>
+        .page {
+          position: relative;
+          min-height: 100vh;
+          overflow: hidden;
+          background:
+            radial-gradient(circle at 50% 10%, rgba(34, 211, 238, 0.22), transparent 25%),
+            radial-gradient(circle at 15% 20%, rgba(168, 85, 247, 0.18), transparent 22%),
+            radial-gradient(circle at 85% 25%, rgba(59, 130, 246, 0.16), transparent 20%),
+            radial-gradient(circle at 50% 100%, rgba(236, 72, 153, 0.12), transparent 26%),
+            linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.78)),
+            #000;
+        }
 
-              <div className="h-px w-40 bg-gradient-to-r from-cyan-300/90 via-fuchsia-400/50 to-transparent shadow-[0_0_18px_rgba(34,211,238,0.6)]" />
+        .grid-overlay {
+          position: absolute;
+          inset: 0;
+          opacity: 0.16;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+          background-size: 44px 44px;
+          pointer-events: none;
+        }
 
-              <p className="max-w-2xl text-sm uppercase tracking-[0.32em] text-zinc-400 sm:text-base">
-                by Melancholae &amp; Youkie Silva
-              </p>
-            </div>
+        .glow {
+          position: absolute;
+          border-radius: 999px;
+          filter: blur(72px);
+          pointer-events: none;
+        }
 
-            <div className="grid max-w-2xl gap-4 sm:grid-cols-3">
-              {platformButtons.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group relative overflow-hidden rounded-[1.4rem] border border-white/10 bg-white/5 px-5 py-5 text-base font-semibold text-white backdrop-blur-xl transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/50 hover:shadow-[0_0_28px_rgba(34,211,238,0.22)]"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-300/10 via-transparent to-fuchsia-400/10 opacity-0 transition duration-300 group-hover:opacity-100" />
-                  <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/80 to-transparent opacity-60" />
-                  <div className="relative flex items-center justify-between gap-3">
-                    <span>{item.label}</span>
-                    <span className="translate-x-0 text-cyan-200 transition group-hover:translate-x-1">→</span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </section>
+        .glow-left {
+          left: -8rem;
+          top: 6rem;
+          width: 18rem;
+          height: 18rem;
+          background: rgba(34, 211, 238, 0.2);
+        }
 
-          <section className="relative">
-            <div className="relative mx-auto max-w-md">
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-cyan-400/20 via-fuchsia-500/10 to-blue-500/20 blur-2xl" />
+        .glow-right {
+          right: -6rem;
+          top: 8rem;
+          width: 18rem;
+          height: 18rem;
+          background: rgba(217, 70, 239, 0.2);
+        }
 
-              <div className="relative rounded-[2.4rem] border border-white/10 bg-white/5 p-4 shadow-[0_0_50px_rgba(34,211,238,0.08)] backdrop-blur-2xl">
-                <div className="rounded-[2rem] border border-white/10 bg-gradient-to-br from-slate-950 via-black to-slate-900 p-5">
-                  <div className="relative aspect-square overflow-hidden rounded-[1.7rem] border border-white/10 bg-[radial-gradient(circle_at_50%_20%,rgba(34,211,238,0.28),transparent_20%),radial-gradient(circle_at_70%_30%,rgba(168,85,247,0.22),transparent_24%),linear-gradient(135deg,#020617,#0b1120_35%,#09090b_65%,#020617)] p-6">
-                    <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:26px_26px]" />
-                    <div className="absolute left-8 top-10 h-24 w-24 rounded-full border border-cyan-300/30 shadow-[0_0_18px_rgba(34,211,238,0.3)]" />
-                    <div className="absolute right-10 top-16 h-16 w-16 rotate-45 border border-fuchsia-400/30" />
-                    <div className="absolute bottom-16 left-10 h-20 w-20 rounded-full border border-blue-300/20" />
-                    <div className="absolute bottom-10 right-10 h-28 w-28 rounded-full bg-fuchsia-500/10 blur-2xl" />
-                    <div className="absolute left-1/2 top-[22%] h-44 w-[2px] -translate-x-1/2 bg-gradient-to-b from-transparent via-cyan-300/80 to-transparent shadow-[0_0_20px_rgba(34,211,238,0.8)]" />
-                    <div className="absolute left-[28%] top-[30%] h-[2px] w-28 bg-gradient-to-r from-transparent via-cyan-300/70 to-transparent shadow-[0_0_16px_rgba(34,211,238,0.7)]" />
-                    <div className="absolute right-[20%] bottom-[30%] h-[2px] w-24 bg-gradient-to-r from-transparent via-fuchsia-400/70 to-transparent shadow-[0_0_16px_rgba(217,70,239,0.6)]" />
+        .glow-bottom {
+          left: 50%;
+          bottom: -8rem;
+          transform: translateX(-50%);
+          width: 20rem;
+          height: 20rem;
+          background: rgba(59, 130, 246, 0.2);
+        }
 
-                    <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] border border-white/10 bg-black/10 backdrop-blur-sm">
-                      <img
-                        src="https://res.cloudinary.com/dmo7ncvk0/image/upload/f_auto,q_auto,w_1200/v1774607712/neonfictionRevQLTY_3_miso96.webp"
-                        alt="Neon Fiction cover art"
-                        className="h-full w-full object-cover"
-                      />
+        .shape {
+          position: absolute;
+          pointer-events: none;
+        }
+
+        .shape-one {
+          left: 8%;
+          top: 18%;
+          width: 6rem;
+          height: 6rem;
+          border: 1px solid rgba(103, 232, 249, 0.2);
+          border-radius: 999px;
+        }
+
+        .shape-two {
+          right: 10%;
+          top: 24%;
+          width: 4rem;
+          height: 4rem;
+          border: 1px solid rgba(232, 121, 249, 0.2);
+          border-radius: 999px;
+        }
+
+        .shape-three {
+          left: 14%;
+          bottom: 18%;
+          width: 5rem;
+          height: 5rem;
+          border: 1px solid rgba(103, 232, 249, 0.15);
+          transform: rotate(45deg);
+        }
+
+        .shape-four {
+          right: 15%;
+          bottom: 20%;
+          width: 7rem;
+          height: 7rem;
+          border: 1px solid rgba(147, 197, 253, 0.1);
+          border-radius: 999px;
+        }
+
+        .main {
+          position: relative;
+          z-index: 1;
+          min-height: 100vh;
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 2.5rem 1.5rem;
+          display: flex;
+          align-items: center;
+        }
+
+        .layout {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          gap: 2.5rem;
+          width: 100%;
+          align-items: center;
+        }
+
+        .left {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.75rem;
+          width: fit-content;
+          padding: 0.7rem 1rem;
+          border-radius: 999px;
+          border: 1px solid rgba(103, 232, 249, 0.2);
+          background: rgba(34, 211, 238, 0.1);
+          color: #cffafe;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.35em;
+          box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
+        }
+
+        .badge-dot {
+          width: 0.5rem;
+          height: 0.5rem;
+          border-radius: 999px;
+          background: #67e8f9;
+          box-shadow: 0 0 12px rgba(34, 211, 238, 1);
+        }
+
+        .hero-copy {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .title {
+          margin: 0;
+          font-size: clamp(4rem, 10vw, 8rem);
+          line-height: 0.9;
+          font-weight: 900;
+          text-transform: uppercase;
+          letter-spacing: -0.04em;
+        }
+
+        .title-neon {
+          display: block;
+          color: #67e8f9;
+          text-shadow: 0 0 22px rgba(34, 211, 238, 0.95);
+        }
+
+        .title-fiction {
+          display: block;
+          color: white;
+          text-shadow: 0 0 18px rgba(255, 255, 255, 0.12);
+        }
+
+        .line {
+          width: 10rem;
+          height: 1px;
+          background: linear-gradient(to right, rgba(103, 232, 249, 0.9), rgba(232, 121, 249, 0.5), transparent);
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.6);
+        }
+
+        .artist {
+          margin: 0;
+          max-width: 42rem;
+          font-size: clamp(0.85rem, 2vw, 1rem);
+          text-transform: uppercase;
+          letter-spacing: 0.32em;
+          color: #a1a1aa;
+        }
+
+        .buttons {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 1rem;
+          max-width: 42rem;
+        }
+
+        .button {
+          position: relative;
+          overflow: hidden;
+          border-radius: 1.4rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+          padding: 1.2rem 1.25rem;
+          backdrop-filter: blur(18px);
+          transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+        }
+
+        .button::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          background: linear-gradient(to bottom right, rgba(103, 232, 249, 0.1), transparent, rgba(232, 121, 249, 0.1));
+        }
+
+        .button::after {
+          content: "";
+          position: absolute;
+          left: 1.5rem;
+          right: 1.5rem;
+          top: 0;
+          height: 1px;
+          opacity: 0.6;
+          background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.8), transparent);
+        }
+
+        .button:hover {
+          transform: translateY(-6px);
+          border-color: rgba(103, 232, 249, 0.5);
+          box-shadow: 0 0 28px rgba(34, 211, 238, 0.22);
+        }
+
+        .button:hover::before {
+          opacity: 1;
+        }
+
+        .button-inner {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.75rem;
+          font-size: 1rem;
+          font-weight: 700;
+        }
+
+        .arrow {
+          color: #a5f3fc;
+          transition: transform 0.3s ease;
+        }
+
+        .button:hover .arrow {
+          transform: translateX(4px);
+        }
+
+        .right {
+          position: relative;
+        }
+
+        .art-glow {
+          position: absolute;
+          inset: -1.5rem;
+          border-radius: 2.5rem;
+          background: linear-gradient(to bottom right, rgba(34, 211, 238, 0.2), rgba(217, 70, 239, 0.1), rgba(59, 130, 246, 0.2));
+          filter: blur(32px);
+        }
+
+        .art-shell {
+          position: relative;
+          border-radius: 2.4rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+          padding: 1rem;
+          backdrop-filter: blur(24px);
+          box-shadow: 0 0 50px rgba(34, 211, 238, 0.08);
+        }
+
+        .art-inner {
+          border-radius: 2rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          padding: 1.25rem;
+          background: linear-gradient(to bottom right, #020617, #000000, #0f172a);
+        }
+
+        .art-frame {
+          position: relative;
+          aspect-ratio: 1 / 1;
+          overflow: hidden;
+          border-radius: 1.7rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background:
+            radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.28), transparent 20%),
+            radial-gradient(circle at 70% 30%, rgba(168, 85, 247, 0.22), transparent 24%),
+            linear-gradient(135deg, #020617, #0b1120 35%, #09090b 65%, #020617);
+        }
+
+        .art-grid {
+          position: absolute;
+          inset: 0;
+          opacity: 0.18;
+          background-image:
+            linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+          background-size: 26px 26px;
+          pointer-events: none;
+        }
+
+        .art-decoration {
+          position: absolute;
+          pointer-events: none;
+        }
+
+        .art-circle-one {
+          left: 2rem;
+          top: 2.5rem;
+          width: 6rem;
+          height: 6rem;
+          border: 1px solid rgba(103, 232, 249, 0.3);
+          border-radius: 999px;
+          box-shadow: 0 0 18px rgba(34, 211, 238, 0.3);
+        }
+
+        .art-shape-two {
+          right: 2.5rem;
+          top: 3rem;
+          width: 4rem;
+          height: 4rem;
+          border: 1px solid rgba(232, 121, 249, 0.3);
+          transform: rotate(45deg);
+        }
+
+        .art-circle-three {
+          left: 2.5rem;
+          bottom: 4rem;
+          width: 5rem;
+          height: 5rem;
+          border: 1px solid rgba(147, 197, 253, 0.2);
+          border-radius: 999px;
+        }
+
+        .art-glow-four {
+          right: 2.5rem;
+          bottom: 2.5rem;
+          width: 7rem;
+          height: 7rem;
+          border-radius: 999px;
+          background: rgba(217, 70, 239, 0.1);
+          filter: blur(24px);
+        }
+
+        .art-line-one {
+          left: 50%;
+          top: 22%;
+          transform: translateX(-50%);
+          width: 2px;
+          height: 11rem;
+          background: linear-gradient(to bottom, transparent, rgba(103, 232, 249, 0.8), transparent);
+          box-shadow: 0 0 20px rgba(34, 211, 238, 0.8);
+        }
+
+        .art-line-two {
+          left: 28%;
+          top: 30%;
+          width: 7rem;
+          height: 2px;
+          background: linear-gradient(to right, transparent, rgba(103, 232, 249, 0.7), transparent);
+          box-shadow: 0 0 16px rgba(34, 211, 238, 0.7);
+        }
+
+        .art-line-three {
+          right: 20%;
+          bottom: 30%;
+          width: 6rem;
+          height: 2px;
+          background: linear-gradient(to right, transparent, rgba(232, 121, 249, 0.7), transparent);
+          box-shadow: 0 0 16px rgba(217, 70, 239, 0.6);
+        }
+
+        .cover-wrap {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+          border-radius: 1.4rem;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(10px);
+        }
+
+        .cover-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+
+        @media (max-width: 980px) {
+          .main {
+            padding: 2rem 1.25rem;
+          }
+
+          .layout {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          .right {
+            max-width: 32rem;
+            width: 100%;
+            margin: 0 auto;
+          }
+        }
+
+        @media (max-width: 700px) {
+          .page {
+            background:
+              radial-gradient(circle at 50% 8%, rgba(34, 211, 238, 0.22), transparent 24%),
+              radial-gradient(circle at 85% 18%, rgba(168, 85, 247, 0.16), transparent 20%),
+              linear-gradient(to bottom, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.82)),
+              #000;
+          }
+
+          .main {
+            padding: 1.5rem 1rem 2rem;
+          }
+
+          .left {
+            gap: 1.5rem;
+          }
+
+          .badge {
+            font-size: 0.68rem;
+            letter-spacing: 0.28em;
+            padding: 0.65rem 0.9rem;
+          }
+
+          .artist {
+            letter-spacing: 0.22em;
+            line-height: 1.6;
+          }
+
+          .buttons {
+            grid-template-columns: 1fr;
+            max-width: none;
+          }
+
+          .button {
+            padding: 1rem 1.1rem;
+          }
+
+          .button-inner {
+            font-size: 0.98rem;
+          }
+
+          .art-shell {
+            padding: 0.8rem;
+            border-radius: 2rem;
+          }
+
+          .art-inner {
+            padding: 0.95rem;
+            border-radius: 1.6rem;
+          }
+
+          .art-frame {
+            border-radius: 1.2rem;
+          }
+        }
+      `}</style>
+
+      <div className="page">
+        <div className="grid-overlay" />
+
+        <div className="glow glow-left" />
+        <div className="glow glow-right" />
+        <div className="glow glow-bottom" />
+
+        <div className="shape shape-one" />
+        <div className="shape shape-two" />
+        <div className="shape shape-three" />
+        <div className="shape shape-four" />
+
+        <main className="main">
+          <div className="layout">
+            <section className="left">
+              <div className="badge">
+                <span className="badge-dot" />
+                <span>Out Now</span>
+              </div>
+
+              <div className="hero-copy">
+                <h1 className="title">
+                  <span className="title-neon">Neon</span>
+                  <span className="title-fiction">Fiction</span>
+                </h1>
+
+                <div className="line" />
+
+                <p className="artist">by Melancholae &amp; Youkie Silva</p>
+              </div>
+
+              <div className="buttons">
+                {platformButtons.map((item) => (
+                  <a
+                    key={item.label}
+                    className="button"
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <div className="button-inner">
+                      <span>{item.label}</span>
+                      <span className="arrow">→</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </section>
+
+            <section className="right">
+              <div className="art-glow" />
+
+              <div className="art-shell">
+                <div className="art-inner">
+                  <div className="art-frame">
+                    <div className="art-grid" />
+                    <div className="art-decoration art-circle-one" />
+                    <div className="art-decoration art-shape-two" />
+                    <div className="art-decoration art-circle-three" />
+                    <div className="art-decoration art-glow-four" />
+                    <div className="art-decoration art-line-one" />
+                    <div className="art-decoration art-line-two" />
+                    <div className="art-decoration art-line-three" />
+
+                    <div className="cover-wrap">
+                      <img src={links.coverArt} alt="Neon Fiction cover art" />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
-        </div>
-      </main>
-    </div>
+            </section>
+          </div>
+        </main>
+      </div>
+    </>
   );
 }
